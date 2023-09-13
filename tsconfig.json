@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "preserveConstEnums": true,
+        "esModuleInterop": true,
+        "jsx": "react",
+        "target": "es2020",
+        "module": "es2020",
+        "moduleResolution": "node",
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "**/*.spec.ts"
+    ]
+}
