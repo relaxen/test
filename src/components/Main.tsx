@@ -1,21 +1,14 @@
 import React, { useEffect } from 'react';
 import Selector from './Selector/Selector';
+import Result from './Result';
 
 const Main: React.FC = () => {
-	useEffect(() => {
-		window.dispatchEvent(
-			new CustomEvent('getData', {
-				detail: { ids: ['estimates-district', 'estimates-realty-complex', 'estimates-flate'] },
-			})
-		);
-	}, []);
-
 	return (
 		<main className="main">
-			<Selector />
-			<div id="estimates-district"></div>
-			<div id="estimates-realty-complex"></div>
-			<div id="estimates-flate"></div>
+			<div className="wrapper">
+				<Selector />
+				<Result />
+			</div>
 		</main>
 	);
 };

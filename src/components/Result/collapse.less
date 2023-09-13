@@ -1,0 +1,32 @@
+.collapse {
+	&:not(:first-child) {
+		margin-top: 21px;
+	}
+	&__eval {
+		border-radius: 50%;
+		width: 53px;
+		height: 53px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 28px;
+
+		color: #fff;
+		font-family: Inter;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+	}
+	&__title {
+		color: rgba(37, 36, 70, 0.55);
+		font-family: Inter;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 25px; /* 104.167% */
+	}
+	.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-expand-icon {
+		height: auto;
+	}
+}

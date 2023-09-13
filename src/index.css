@@ -11,3 +11,20 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+.ant-btn.ant-btn-lg.ant-btn-icon-only {
+    width: 54px;
+    height: 54px;
+}
+.ant-btn-primary {
+    background-color: #0047fd;
+}
+.ant-btn {
+    height: 52px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.32px;
+}

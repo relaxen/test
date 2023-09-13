@@ -7,14 +7,11 @@ import Main from './components/Main';
 import './App.less';
 
 const App: React.FC = () => {
-
 	return (
 		<div className="App">
-			<div className="wrapper">
-				<Header />
-				<Main />
-				<Footer />
-			</div>
+			<Header />
+			<Main />
+			<Footer />
 		</div>
 	);
 };
