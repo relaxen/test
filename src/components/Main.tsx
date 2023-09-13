@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Selector from './Selector/Selector';
 import Result from './Result';
 
