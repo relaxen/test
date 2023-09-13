@@ -8,7 +8,7 @@ import CollapsedItem from './components/CollapsedItem/CollapsedItem';
 import Image from '../../assets/image41.png';
 import { CollapsedItemsArray, LeftItemsArray } from './constants';
 
-import './Result.less';
+import './result.less';
 
 const ids = CollapsedItemsArray.map((el) => el.id);
 const initialValues = {
@@ -17,8 +17,8 @@ const initialValues = {
 	'estimates-flate': null,
 };
 const Result: React.FC = () => {
-    const [collapseText, setCollapseText] = useState(initialValues);
-    
+	const [collapseText, setCollapseText] = useState(initialValues);
+
 	const subscribeCallback = () => {
 		setCollapseText((prev) =>
 			ids.reduce(
@@ -29,8 +29,8 @@ const Result: React.FC = () => {
 				prev
 			)
 		);
-    };
-    
+	};
+
 	useEffect(() => {
 		window.dispatchEvent(
 			new CustomEvent('getData', {
@@ -69,7 +69,11 @@ const Result: React.FC = () => {
 				</div>
 				<div className="result__right-col">
 					{CollapsedItemsArray.map((el) => (
-						<CollapsedItem key={el.id} {...el} children={<div className="result__collapse-child">{collapseText[el.id]}</div>} />
+						<CollapsedItem
+							key={el.id}
+							{...el}
+							children={<div className="result__collapse-child">{collapseText[el.id]}</div>}
+						/>
 					))}
 					<div className="">
 						<div className="result__extra">

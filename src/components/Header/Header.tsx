@@ -4,7 +4,7 @@ import { Button } from 'antd';
 
 import Logo from '../Logo';
 
-import './Header.less';
+import './header.less';
 
 const Header = () => (
 	<div className="wrapper">
