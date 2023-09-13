@@ -2,11 +2,12 @@ import React from 'react';
 
 import { Collapse } from 'antd';
 
-import './collapse.less';
+import './CollapsedItem.less';
 
-const CollapsedItem = ({ title, evaluation, id, color = '#ffc940' }) => (
+const CollapsedItem = ({ title, evaluation, id, children, color = '#ffc940' }) => (
 	<div className="collapse">
-		<Collapse
+        <Collapse
+            
 			style={{
 				borderRadius: '10px',
 				border: '1px solid #F0EEEE',
@@ -24,7 +25,7 @@ const CollapsedItem = ({ title, evaluation, id, color = '#ffc940' }) => (
 							<span className="collapse__title">{title}</span>
 						</>
 					),
-					children: <div id={id}></div>,
+					children,
 				},
 			]}
 			bordered={false}

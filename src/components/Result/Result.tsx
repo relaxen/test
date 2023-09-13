@@ -1,66 +1,60 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 
-import LeftItem from './LeftItem';
-import CollapsedItem from './CollapsedItem';
+import LeftItem from './components/LeftItem/LeftItem';
+import CollapsedItem from './components/CollapsedItem/CollapsedItem';
 import Image from '../../assets/image41.png';
+import { CollapsedItemsArray, LeftItemsArray } from './constants';
 
-import './result.less';
+import './Result.less';
 
-const CollapsedItemsArray = [
-	{
-		id: 'estimates-district',
-		evaluation: 3,
-		title: 'Оценка инфраструктуры и района',
-	},
-	{
-		id: 'estimates-realty-complex',
-		evaluation: 4,
-		title: 'Оценка жилого комплекса',
-		color: '#42D0A6',
-	},
-	{
-		id: 'estimates-flate',
-		evaluation: 3,
-		title: 'Оценка квартиры',
-	},
-];
-
-const LeftItemsArray = [
-	{
-		title: 'Оценка от сервиса',
-		evaluation: '8 млн ₽',
-		text: 'Cтоимость, определенная на основе долгосрочных данных и консультаций с экспертами рынка недвижимости',
-	},
-	{
-		title: 'Рыночный диапазон цены',
-		evaluation: '7,5 - 8,5 млн ₽',
-		text: 'Оценочные границы стоимости объекта на рынке недвижимости, основанные на анализе данных и консультациях с экспертами',
-	},
-	{
-		title: 'Цена на сайтах (cian, domclick)',
-		evaluation: '8,9 млн ₽',
-		text: 'Стоимость квартиры, указанная в объявлениях на различных онлайн-ресурсах',
-		color: '#F00',
-	},
-];
-
+const ids = CollapsedItemsArray.map((el) => el.id);
+const initialValues = {
+	'estimates-district': null,
+	'estimates-realty-complex': null,
+	'estimates-flate': null,
+};
 const Result: React.FC = () => {
+    const [collapseText, setCollapseText] = useState(initialValues);
+    
+	const subscribeCallback = () => {
+		setCollapseText((prev) =>
+			ids.reduce(
+				(accumulator, currentValue) => ({
+					...accumulator,
+					[currentValue]: document.getElementById(currentValue)?.innerHTML,
+				}),
+				prev
+			)
+		);
+    };
+    
 	useEffect(() => {
 		window.dispatchEvent(
 			new CustomEvent('getData', {
-				detail: { ids: ['estimates-district', 'estimates-realty-complex', 'estimates-flate'] },
+				detail: { ids },
 			})
 		);
+		window.addEventListener('domWasUpdated', subscribeCallback);
+		return () => {
+			window.removeEventListener('domWasUpdated', subscribeCallback);
+		};
 	}, []);
 
 	return (
 		<div className="result">
+			<div className="" style={{ display: 'none' }}>
+				{ids.map((el) => (
+					<div key={el} id={el}>
+						{el}
+					</div>
+				))}
+			</div>
 			<h2 className="result__title">Результаты оценки</h2>
 
-			<div className="result-description">
+			<div className="result__description">
 				Отчёт о квартире по адресу: Москва, НАО (Новомосковский), Коммунарка поселок, Бунинские Луга жилой комплекс,
 				3.4.1
 			</div>
@@ -75,7 +69,7 @@ const Result: React.FC = () => {
 				</div>
 				<div className="result__right-col">
 					{CollapsedItemsArray.map((el) => (
-						<CollapsedItem key={el.id} {...el} />
+						<CollapsedItem key={el.id} {...el} children={<div className="result__collapse-child">{collapseText[el.id]}</div>} />
 					))}
 					<div className="">
 						<div className="result__extra">

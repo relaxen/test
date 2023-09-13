@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './leftItem.less';
+import './LeftItem.less';
 
 const LeftItem = ({ title, evaluation, text, color = '#110229' }) => (
 	<div className="left-item">
